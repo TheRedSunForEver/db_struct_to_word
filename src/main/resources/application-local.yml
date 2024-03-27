@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/osp_msisdn_v1?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true
+    username: x
+    password: s123455
+    tomcat:
+      initial-size: 1

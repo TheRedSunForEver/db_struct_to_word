@@ -1,8 +1,21 @@
+#spring:
+#  datasource:
+#    driverClassName: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://15.116.20.163:3306/cmg_112?useUnicode=true&characterEncoding=UTF8&useSSL=false&serverTimezone=GMT%2b8
+#    username: osp
+#    password: Osp_ctrm_2014
+
+#spring:
+#  datasource:
+#    driverClassName: com.mysql.jdbc.Driver
+#    url: jdbc:mysql://15.116.20.163:3306/boc_resource?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true&serverTimezone=GMT%2b8
+#    username: osp
+#    password: Osp_ctrm_2014
+
 spring:
   datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/osp_msisdn_v1?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true
-    username: x
-    password: s123455
-    tomcat:
-      initial-size: 1
+    type: com.zaxxer.hikari.HikariDataSource
+    driverClassName: org.panweidb.Driver
+    url: jdbc:panweidb://172.18.8.56:17700/em_resource?currentSchema=em_resource&allowEncodingChanges=true&characterEncoding=UTF-8&loginTimeout=300&connectTimeout=300&socketTimeout=300&tcpKeepAlive=true&batchMode=true
+    username: osp
+    password: 8JvPFc50jwJq_11Ld5wHM8@

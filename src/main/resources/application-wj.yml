@@ -1,6 +1,0 @@
-spring:
-  datasource:
-    driverClassName: com.mysql.jdbc.Driver
-    url: jdbc:mysql://15.116.20.163:3306/osp_msisdn?useUnicode=true&characterEncoding=UTF-8&useSSL=false&rewriteBatchedStatements=true
-    username: osp
-    password: Osp_ctrm_2014
