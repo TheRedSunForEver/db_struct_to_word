@@ -30,12 +30,12 @@ public class PanWeiDbStructToWordTool {
                     "WHERE tb.table_schema = :schemaName";
 
     private final static String QUERY_STRUCT_SQL =
-            "SELECT col.column_name, col.data_type as column_type, col.is_nullable, d.description as column_comment " +
+            "SELECT col.column_name, col.data_type as column_type, col.is_nullable, col.character_maximum_length column_length, d.description as column_comment " +
                     "FROM information_schema.columns col " +
                     "JOIN pg_class c ON c.relname = col.table_name " +
                     "LEFT JOIN pg_description d ON d.objoid = c.oid AND d.objsubid = col.ordinal_position " +
                     "WHERE col.table_schema = :schemaName and col.table_name=:tableName " +
-                    "ORDER BY col.ordinal_position;";
+                    "ORDER BY col.ordinal_position";
 
     public void writeWord(String schemaName, String tableName, String tableComment) {
         XWPFDocument document = loadDocument();
@@ -127,8 +127,13 @@ public class PanWeiDbStructToWordTool {
 
     private void writeContentRow(XWPFTable table, Map<String, Object> columnInfo) {
         XWPFTableRow row = table.createRow();
+        String type = transColumnType("" + columnInfo.get("COLUMN_TYPE"));
+        String length = "" + columnInfo.get("COLUMN_LENGTH");
+        if ("varchar".equals(type) && !"null".equals(length)) {
+            type = "varchar(" + length + ")";
+        }
         row.getCell(0).setText("" + columnInfo.get("COLUMN_NAME"));
-        row.getCell(1).setText(transColumnType("" + columnInfo.get("COLUMN_TYPE")));
+        row.getCell(1).setText(type);
         row.getCell(2).setText("" + columnInfo.get("COLUMN_COMMENT"));
 
         String isNullableStr = ("NO".equalsIgnoreCase("" + columnInfo.get("IS_NULLABLE"))) ? "是" : "否";
